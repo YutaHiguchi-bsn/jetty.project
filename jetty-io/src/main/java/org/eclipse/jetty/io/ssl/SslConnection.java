@@ -704,6 +704,10 @@ public class SslConnection extends AbstractConnection implements Connection.Upgr
                                 _underflown = false;
                                 unwrapResult = unwrap(_sslEngine, _encryptedInput, appIn);
                             }
+                            catch (SSLException e)
+                            {
+                                throw handleException(e, "fill");
+                            }
                             finally
                             {
                                 BufferUtil.flipToFlush(appIn, pos);
